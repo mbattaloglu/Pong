@@ -1,24 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public Ball ball;
+
+    public Paddle playerPaddle;
+    public Paddle computerPaddle;
+
+    public Text playerScoreText;
+    public Text computerScoreText;
+
     private int playerScore;
     private int computerScore;
 
     public void PlayerScores()
     {
-        playerScore++;
-        Debug.Log("Player Scored!: " + playerScore);
-        this.ball.ResetPosition();
+        this.playerScore++;
+        this.playerScoreText.text = playerScore.ToString();
+        ResetRound();
     }
 
     public void ComputerScores()
     {
-        computerScore++;
-        Debug.Log("Computer Scored!: " + computerScore);
+        this.computerScore++;
+        this.computerScoreText.text = computerScore.ToString();
+        ResetRound();
+    }
+
+    private void ResetRound()
+    {
+        this.playerPaddle.ResetPosition();
+        this.computerPaddle.ResetPosition();
         this.ball.ResetPosition();
+        this.ball.AddStartingForce();
     }
 }

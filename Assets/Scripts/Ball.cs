@@ -13,9 +13,10 @@ public class Ball : MonoBehaviour
     private void Start()
     {
         ResetPosition();
+        AddStartingForce();
     }
 
-    private void AddStartingForce()
+    public void AddStartingForce()
     {
         float x = Random.Range(0, 2) == 0 ? -1f : 1f;
         float y = Random.Range(0, 2) == 0 ? Random.Range(-1f, -0.5f) : Random.Range(0.5f, 1f);
@@ -33,7 +34,5 @@ public class Ball : MonoBehaviour
     {
         rb.position = Vector3.zero;
         rb.velocity = Vector3.zero;
-
-        AddStartingForce();
     }
 }
